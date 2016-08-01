@@ -27,6 +27,7 @@ namespace Fangame_Manager
             base.Dispose(disposing);
         }
 
+        // Just a faster get/set
         bool isScriptRunning
         {
             get { return MainForm.Instance.isScriptRunning; }

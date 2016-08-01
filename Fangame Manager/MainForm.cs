@@ -66,6 +66,7 @@ namespace Fangame_Manager
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
+            // TODO: should these be elsewhere
             Properties.Settings.Default.oldWidth = Size;
             Properties.Settings.Default.oldPosition = Location;
             Properties.Settings.Default.Save();
@@ -88,18 +89,20 @@ namespace Fangame_Manager
             string dir = Path.GetDirectoryName(filename);
             string dirName = Path.GetFileName(dir);
             string destDir = Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + Properties.Settings.Default.foldernameForCompleted + Path.DirectorySeparatorChar + dirName;
-            if (Directory.Exists(destDir))
-            {
-                if (MessageBox.Show($"Directory \"{dirName}\" exists already in the {Properties.Settings.Default.foldernameForCompleted} folder. Replace?", "Directory Conflict", MessageBoxButtons.OKCancel)
-                    == DialogResult.Cancel)
-                    return false;
-            }
+            
 
             if (Properties.Settings.Default.driveSheetInsertOn)
                 AddToGoogleSheet(gamename);
 
             if (Properties.Settings.Default.moveCompletedGamesAway)
             {
+                if (Directory.Exists(destDir))
+                {
+                    if (MessageBox.Show($"Directory \"{dirName}\" exists already in the {Properties.Settings.Default.foldernameForCompleted} folder. Replace?", "Directory Conflict", MessageBoxButtons.OKCancel)
+                        == DialogResult.Cancel)
+                        return false;
+                }
+
                 MoveDirectory(dir, destDir);
                 recentGamesListbox.Items.Remove((object)gamename);
                 newGamesListbox.Items.Remove((object)gamename);
@@ -135,6 +138,8 @@ namespace Fangame_Manager
 
         public void addCurrentCompletedToSheet()
         {
+
+            // Get directories from completed
             string dirsPath = Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + Properties.Settings.Default.foldernameForCompleted;
             string[] dirs = Directory.GetDirectories(dirsPath);
 
@@ -149,6 +154,7 @@ namespace Fangame_Manager
             foreach (string dir in dirs)
             {
                 curProgress++;
+                // get name
                 string[] filenames = Directory.GetFiles(dir, "*.exe");
                 if (filenames.Length > 1)
                 {
@@ -161,9 +167,10 @@ namespace Fangame_Manager
                 string filename = filenames[0];
                 string exeName = Path.GetFileNameWithoutExtension(filename);
                 string gamename = Path.GetFileName(dir);
-                if (exeName.Length > gamename.Length)
-                    gamename = exeName;
-                gamenameToFilename.Add(gamename, filename);
+                if (exeName.Length > gamename.Length) gamename = exeName;
+
+                gamenameToFilename.Add(gamename, filename); // TODO: is this necessary?
+
                 AddToGoogleSheet(gamename, false);
                 UpdateProgressLabel($"{curProgress}/{endProg}");
             }
@@ -219,26 +226,27 @@ namespace Fangame_Manager
             PromptForRating prompt = new PromptForRating(gamename);
             DialogResult result = prompt.ShowDialog();
             int rating = 0;
-            if (result == DialogResult.OK)
+            switch (result)
             {
-                rating = 1;
+                case DialogResult.OK:
+                    rating = 1;
+                    break;
+                case DialogResult.Cancel:
+                    rating = 2;
+                    break;
+                case DialogResult.Abort:
+                    rating = 3;
+                    break;
+                case DialogResult.Retry:
+                    rating = 4;
+                    break;
+                case DialogResult.Ignore:
+                    rating = 5;
+                    break;
+                default:
+                    break;
             }
-            else if (result == DialogResult.Cancel)
-            {
-                rating = 2;
-            }
-            else if (result == DialogResult.Abort)
-            {
-                rating = 3;
-            }
-            else if (result == DialogResult.Retry)
-            {
-                rating = 4;
-            }
-            else if (result == DialogResult.Ignore)
-            {
-                rating = 5;
-            }
+
             return rating;
         }
 
@@ -267,6 +275,8 @@ namespace Fangame_Manager
                 deaths[i] = 0;
                 rightSave[i] = false;
             }
+
+            // Search the save files. No support for milliseconds now
             string[] savefile = Directory.GetFiles(dir, "DeathTime", SearchOption.AllDirectories);
             if (savefile.Length == 1)
             {
@@ -322,6 +332,8 @@ namespace Fangame_Manager
                     }
                 }
             }
+
+            // Find the right save or prompt for it
             if (amountOfRight == 1)
             {
                 for (int i = 0; i < 3; i++)
@@ -334,6 +346,7 @@ namespace Fangame_Manager
                         return returnvalues;
                     }
                 }
+                // Shouldn't ever be reached
                 return null;
             }
             else if (amountOfRight > 1)
@@ -358,6 +371,7 @@ namespace Fangame_Manager
                 }
                 return returnvalues;
             }
+            // No savefiles found. Create a dummy one
             else
             {
                 int[] returnvalues = new int[2];
@@ -497,6 +511,7 @@ namespace Fangame_Manager
 
         private void UnpackNewgames()
         {
+            // Search archive files
             string currdir = Directory.GetCurrentDirectory();
             string[] archives = Directory.GetFiles(currdir);
             List<string> archiveList = archives.ToList<string>();
@@ -517,6 +532,8 @@ namespace Fangame_Manager
             {
                 return;
             }
+
+            // Extract them
             WaitForm wf = new WaitForm("Please wait while extracting");
             waitFormThread = new Thread(() => wf.ShowDialog());
             waitFormThread.Start();
@@ -555,6 +572,7 @@ namespace Fangame_Manager
                 if (result == DialogResult.Cancel) return false;
             }
 
+            // Zip doesn't need extract program
             if (fileExtension == ".zip")
             {
                 using (ZipArchive archive = ZipFile.OpenRead(filename))
@@ -686,9 +704,9 @@ namespace Fangame_Manager
             {
                 var targetFolder = folder.Key.Replace(sourcePath, targetPath);
                 Directory.CreateDirectory(targetFolder);
-                foreach (var file in folder)
+                foreach (string file in folder)
                 {
-                    var targetFile = Path.Combine(targetFolder, Path.GetFileName(file));
+                    string targetFile = Path.Combine(targetFolder, Path.GetFileName(file));
                     if (File.Exists(targetFile)) File.Delete(targetFile);
                     File.Move(file, targetFile);
                 }
@@ -711,8 +729,10 @@ namespace Fangame_Manager
             string filename = filenames[0];
             string exeName = Path.GetFileNameWithoutExtension(filename);
             string gamename = Path.GetFileName(dir);
-            if (exeName.Length > gamename.Length)
-                gamename = exeName;
+
+            // Choose the longer one for the showed name
+            if (exeName.Length > gamename.Length) gamename = exeName;
+
             // Is the game found form old games
             if (settings.exenames.Contains(exeName))
             {
@@ -769,6 +789,7 @@ namespace Fangame_Manager
                 AddDirectoryToGames(dir);
             }
 
+            // Remove deleted ones from saved names
             for (int i = 0; i < settings.exenames.Count; i++)
             {
                 string name = settings.exenames[i];

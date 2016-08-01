@@ -98,22 +98,28 @@ namespace Fangame_Manager
                             }
 
                         }
+
+                        // Should timer be reset
                         if ((Instance.lastZinMillis + 3000 < Instance.zSw.ElapsedMilliseconds) || !Instance.zSw.IsRunning)
                         {
                             Instance.zSw.Restart();
                             Instance.zCount = 0;
                             Instance.zTimes.Clear();
                         }
+
+                        // Update timer and count
                         Instance.zCount++;
                         Instance.zTimes.Enqueue((int)Instance.zSw.ElapsedMilliseconds);
                         Instance.lastZinMillis = (int)Instance.zSw.ElapsedMilliseconds;
                         if (Instance.zTimes.Count > 1)
                         {
+                            // Is the oldest time older than 5 seconds
                             while (Instance.zTimes.Peek() < Instance.lastZinMillis - 5000)
                             {
                                 Instance.zTimes.Dequeue();
                             }
 
+                            // Update shown time
                             int totalTime = Instance.lastZinMillis - Instance.zTimes.Peek();
                             int zTotalTimes = Instance.zTimes.Count;
                             float average = (float)zTotalTimes * 1000 / (float)totalTime;
@@ -126,22 +132,13 @@ namespace Fangame_Manager
                         Instance.oReleased = false;
                         Instance.autofire = !Instance.autofire;
                     }
-                    else
-                    {
-                        if (Instance.zTimes.Count > 1)
-                        {
-                            if (Instance.lastZinMillis < Instance.zSw.ElapsedMilliseconds - 3000)
-                            {
-                                Instance.UpdateStatuszAmount("z: 0");
-                            }
-                        }
-                    }
                 }
                 else if (wParam == (IntPtr)WM_KEYUP)
                 {
                     // Released Jump button
                     if (Instance.processingShift && key == Instance.keyToCheck)
                     {
+                        // Update frames
                         Instance.shiftSw.Stop();
                         int millis = (int)Instance.shiftSw.ElapsedMilliseconds;
                         int frames = (millis + 3) / 20;
@@ -163,6 +160,7 @@ namespace Fangame_Manager
                     }
                 }
             }
+            // Pass back to windows
             return CallNextHookEx(nCode, wParam, lParam);
         }
 
