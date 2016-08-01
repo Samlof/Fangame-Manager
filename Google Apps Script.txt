@@ -1,0 +1,79 @@
+/**
+ * The function in this script will be called by the Apps Script Execution API.
+ */
+
+/**
+ * Inserts the parameters into a Google Sheet
+ */
+function insertData(e) {
+  // Parse arguments
+  var res = e.split("^*_?");
+  // var gamename = res[0];
+  // var spreadsheetName = res[1];
+  // var rowToStart = res[2];
+  // var columnToStart = res[3];
+  // var date = res[4];
+  // var rating = res[5];
+  // var time = res[6];
+  // var deaths = res[7];
+    
+  
+  // Find spreadsheets with the name
+  var root = DriveApp.getRootFolder();
+  var maybeSpreadsheet = root.getFilesByName(res[1]);
+  var mySpreadsheet, sheet;
+  
+  // Choose an owned and non-trashed one
+  while(maybeSpreadsheet.hasNext()){
+    var myss = maybeSpreadsheet.next();
+    if(myss.getOwner().getEmail().equals(Session.getActiveUser().getEmail()) && myss.isTrashed() == false){
+      mySpreadsheet = myss;
+    }
+  }
+  
+  // didn't find it
+  if(mySpreadsheet == null){
+    mySpreadsheet = SpreadsheetApp.create(res[1]);
+    sheet = mySpreadsheet.getSheets()[0];
+    var newValues = ["Number", "Rating", "Title", "Time", "Deaths", "Date"];
+    sheet.getRange(res[2], res[3], 1, newValues.length).setValues([newValues]);
+  } else {
+    sheet = SpreadsheetApp.open(mySpreadsheet).getSheets()[0];
+  }
+  
+  // Is the spreadsheet almost empty?
+  if(sheet.getLastRow() < parseInt(res[2])+1){
+    var newValues = ["Number", "Rating", "Title", "Time", "Deaths", "Date"];
+    sheet.getRange(res[2], res[3], 1, newValues.length).setValues([newValues]);
+  }
+  
+  
+  // Has the game been entried already?
+  var rowToEdit = 0;
+  if(sheet.getLastRow() > parseInt(res[2])){
+    var values = sheet.getSheetValues(parseInt(res[2])+1, parseInt(res[3])+2, sheet.getLastRow()-1, parseInt(res[3])+2);
+    for(var i in values){
+      if(values[i][0].equals(res[0])){
+        rowToEdit = parseInt(i)+1;
+        break;
+      }
+    }
+  }
+  if(rowToEdit == 0){
+    // No. add a new line
+    //               Number                     rating  Title    Time    Deaths   Date
+    var newValues = [sheet.getLastRow()-parseInt(res[2])+1, res[5], res[0], res[6], res[7], res[4]];
+    if(sheet.getMaxRows() < sheet.getLastRow()+1){
+      sheet.insertRowAfter(sheet.getMaxRows());
+    }
+    sheet.insertRowAfter(sheet.getLastRow()+1);
+    sheet.getRange(sheet.getLastRow()+1, res[3], 1, newValues.length).setValues([newValues]);
+  } else {
+    // yes, update the old line
+    //               Time     Deaths   Date
+    var newValues = [res[5], res[0], res[6], res[7], res[4]];
+    sheet.getRange(rowToEdit+parseInt(res[2]), parseInt(res[3])+1, 1, newValues.length).setValues([newValues]);
+  }
+  
+  return true;
+}
