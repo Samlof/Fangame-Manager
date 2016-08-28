@@ -7,7 +7,7 @@ Feel free to add pull requests. A major work needing to be done is convertion in
 
 
 -------Help for setting up google script------<br>
-To compile and have the google integration work, you have to get a google developers client id, secret key and script id.
+To have the google integration work, you have to get a google developers client id, secret key and script id.
 To get the client id and secret key, enable developer API.<br>
 1) console.developers.google.com make the default project<br>
 2) Enable Google Apps Script Execution API<br>
