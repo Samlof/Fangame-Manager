@@ -6,7 +6,7 @@ Open the Nuget package manager in Visual Studio and it will give an option to re
 Feel free to add pull requests. A major work needing to be done is convertion into WPF from winforms.
 
 
--------Help for setting up google script------
+-------Help for setting up google script------<br>
 To compile and have the google integration work, you have to get a google developers client id, secret key and script id.
 To get the client id and secret key, enable developer API.<br>
 1) console.developers.google.com make the default project<br>
