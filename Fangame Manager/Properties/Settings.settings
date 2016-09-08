@@ -14,9 +14,6 @@
     <Setting Name="recentGamesMax" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">20</Value>
     </Setting>
-    <Setting Name="oldWidth" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
-    </Setting>
     <Setting Name="foldernameForCompleted" Type="System.String" Scope="User">
       <Value Profile="(Default)">Completed</Value>
     </Setting>
@@ -47,10 +44,10 @@
     <Setting Name="spreadSheetnameForGoogle" Type="System.String" Scope="User">
       <Value Profile="(Default)">Completed Fangames</Value>
     </Setting>
-    <Setting Name="startRowForSheet" Type="System.Decimal" Scope="User">
+    <Setting Name="startRowForSheet" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3</Value>
     </Setting>
-    <Setting Name="startColumnForSheet" Type="System.Decimal" Scope="User">
+    <Setting Name="startColumnForSheet" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="driveSheetInsertOn" Type="System.Boolean" Scope="User">
@@ -59,17 +56,8 @@
     <Setting Name="hideStatsOnGameExit" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="showAddCurrentCompletedButton" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="statsWindowLocation" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
-    </Setting>
     <Setting Name="moveCompletedGamesAway" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="oldPosition" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
     </Setting>
   </Settings>
 </SettingsFile>
