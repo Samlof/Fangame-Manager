@@ -42,7 +42,7 @@ namespace Fangame_Manager
                 Environment.UserName,
                 CancellationToken.None,
                 new FileDataStore(credPath, true)).Result;
-            
+
             var service = new ScriptService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,

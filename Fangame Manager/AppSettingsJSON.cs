@@ -1,10 +1,10 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Web.Script.Serialization;
 
 namespace Fangame_Manager
 {
-    public class AppSettings<T> where T : new()
+
+    public class AppSettingsJSON<T> where T : new()
     {
         private const string DEFAULT_FILENAME = "FangameManagerSettings.jsn";
 

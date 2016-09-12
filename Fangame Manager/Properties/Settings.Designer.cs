@@ -73,18 +73,6 @@ namespace Fangame_Manager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Size oldWidth {
-            get {
-                return ((global::System.Drawing.Size)(this["oldWidth"]));
-            }
-            set {
-                this["oldWidth"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Completed")]
         public string foldernameForCompleted {
             get {
@@ -206,9 +194,9 @@ namespace Fangame_Manager.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("3")]
-        public decimal startRowForSheet {
+        public int startRowForSheet {
             get {
-                return ((decimal)(this["startRowForSheet"]));
+                return ((int)(this["startRowForSheet"]));
             }
             set {
                 this["startRowForSheet"] = value;
@@ -218,9 +206,9 @@ namespace Fangame_Manager.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("3")]
-        public decimal startColumnForSheet {
+        public int startColumnForSheet {
             get {
-                return ((decimal)(this["startColumnForSheet"]));
+                return ((int)(this["startColumnForSheet"]));
             }
             set {
                 this["startColumnForSheet"] = value;
@@ -253,30 +241,6 @@ namespace Fangame_Manager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool showAddCurrentCompletedButton {
-            get {
-                return ((bool)(this["showAddCurrentCompletedButton"]));
-            }
-            set {
-                this["showAddCurrentCompletedButton"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point statsWindowLocation {
-            get {
-                return ((global::System.Drawing.Point)(this["statsWindowLocation"]));
-            }
-            set {
-                this["statsWindowLocation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool moveCompletedGamesAway {
             get {
@@ -284,18 +248,6 @@ namespace Fangame_Manager.Properties {
             }
             set {
                 this["moveCompletedGamesAway"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point oldPosition {
-            get {
-                return ((global::System.Drawing.Point)(this["oldPosition"]));
-            }
-            set {
-                this["oldPosition"] = value;
             }
         }
     }

@@ -1,0 +1,61 @@
+﻿<Window x:Class="Fangame_Manager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fangame_Manager"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="300" Width="525"
+        Closing="Window_Closing">
+
+    
+    <Grid>
+        
+        <Menu IsMainMenu="True">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Options"  Click="Show_Options_Clicked"/>
+                <MenuItem Header="Quit"  Click="Quit_Clicked"/>
+            </MenuItem>
+            <Button x:Name="button" Content="Button" Width="75" Click="button_Click" />
+        </Menu>
+        <Grid VerticalAlignment="Bottom" Margin="4, 4, 4, 4" Width="auto">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <Label Grid.Row="0" Grid.Column="0" Content="Old Games:"/>
+            <ListBox Name="lbOldGames" Grid.Row="1" Grid.Column="0" PreviewMouseDown="lbOldGames_PreviewMouseDown">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
+            <Label Grid.Row="0" Grid.Column="1" Content="Recent Games:" PreviewMouseDown="Label_PreviewMouseDown"/>
+            <ListBox Grid.Row="1" Grid.Column="1" Name="lbRecentGames">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
+            <Label Grid.Row="0" Grid.Column="2" Content="New Games:"/>
+            <ListBox Grid.Row="1" Grid.Column="2" Name="lbNewGames" MouseDoubleClick="lb_MouseDoubleClick" PreviewMouseDown="lbNewGames_PreviewMouseDown">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+    </Grid>
+</Window>
