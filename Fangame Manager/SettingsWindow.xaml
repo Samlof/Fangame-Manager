@@ -30,9 +30,20 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
-                    <CheckBox Grid.Column="0" Grid.Row="0" x:Name="extractArchives"
+                    <CheckBox Grid.Column="0" Grid.Row="0"
                               Content="Extract Archives"
-                              IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=extractArchivesOnStartup}" />
+                              IsChecked="{Binding Source={x:Static properties:Settings.Default},
+                        Path=extractArchivesOnStartup}" />
+
+                    <CheckBox Grid.Column="0" Grid.Row="1"
+                              Content="Delete Archive after extract"
+                              IsChecked="{Binding Source={x:Static properties:Settings.Default},
+                        Path=deleteArchivesOnExtract}" />
+
+                    <CheckBox Grid.Column="0" Grid.Row="2"
+                              Content="Delete Archive after extract"
+                              IsChecked="{Binding Source={x:Static properties:Settings.Default},
+                        Path=deleteArchivesOnExtract}" />
 
                 </Grid>
             </Grid>
