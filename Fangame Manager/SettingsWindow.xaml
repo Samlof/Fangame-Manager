@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fangame_Manager"
+        xmlns:properties="clr-namespace:Fangame_Manager.Properties"
         mc:Ignorable="d"
         Title="SettingsWindow" Height="300" Width="300">
     <Grid>
@@ -30,7 +31,8 @@
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
                     <CheckBox Grid.Column="0" Grid.Row="0" x:Name="extractArchives"
-                              Content="Extract Archives" IsChecked="{Binding Properties.Settings.Default.extractArchivesOnStartup, UpdateSourceTrigger=PropertyChanged}" />
+                              Content="Extract Archives"
+                              IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=extractArchivesOnStartup}" />
 
                 </Grid>
             </Grid>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,11 +26,10 @@ namespace Fangame_Manager
             Properties.Settings.Default.Reload();
         }
 
-        private bool extractArchive
+        protected override void OnClosed(EventArgs e)
         {
-            get { return Properties.Settings.Default.extractArchivesOnStartup; }
-            set { Properties.Settings.Default.extractArchivesOnStartup = value; }
+            Properties.Settings.Default.Save();
+            base.OnClosed(e);
         }
-        
     }
 }
