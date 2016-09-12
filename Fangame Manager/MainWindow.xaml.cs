@@ -30,7 +30,8 @@ namespace Fangame_Manager
         }
         private void Show_Options_Clicked(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("You clicked 'Show options'");
+            SettingsWindow settingsWindow = new SettingsWindow();
+            settingsWindow.Show();
         }
 
         private void Quit_Clicked(object sender, RoutedEventArgs e)
