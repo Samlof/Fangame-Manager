@@ -41,10 +41,14 @@
                         Path=deleteArchivesOnExtract}" />
 
                     <CheckBox Grid.Column="0" Grid.Row="2"
-                              Content="Delete Archive after extract"
+                              Content="Start autohotkey"
                               IsChecked="{Binding Source={x:Static properties:Settings.Default},
-                        Path=deleteArchivesOnExtract}" />
-
+                        Path=startAutoScriptOnAppStart}" />
+                    
+                    <CheckBox Grid.Column="0" Grid.Row="2"
+                              Content="Start Stats window"
+                              IsChecked="{Binding Source={x:Static properties:Settings.Default},
+                        Path=openStatsOnAppStart}" />
                 </Grid>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">
