@@ -44,15 +44,47 @@
                               Content="Start autohotkey"
                               IsChecked="{Binding Source={x:Static properties:Settings.Default},
                         Path=startAutoScriptOnAppStart}" />
-                    
-                    <CheckBox Grid.Column="0" Grid.Row="2"
+
+                    <CheckBox Grid.Column="0" Grid.Row="3"
                               Content="Start Stats window"
                               IsChecked="{Binding Source={x:Static properties:Settings.Default},
                         Path=openStatsOnAppStart}" />
                 </Grid>
             </Grid>
-            <Grid Grid.Row="0" Grid.Column="1">
-                
+
+            <Label Grid.Row="0" Grid.Column="1" Content="On Game Start" />
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Grid.Column="0" Grid.Row="0"
+                              Content="Extract Archives"
+                              IsChecked="{Binding Source={x:Static properties:Settings.Default},
+                        Path=extractArchivesOnStartup}" />
+
+                    <CheckBox Grid.Column="0" Grid.Row="1"
+                              Content="Delete Archive after extract"
+                              IsChecked="{Binding Source={x:Static properties:Settings.Default},
+                        Path=deleteArchivesOnExtract}" />
+
+                    <CheckBox Grid.Column="0" Grid.Row="2"
+                              Content="Start autohotkey"
+                              IsChecked="{Binding Source={x:Static properties:Settings.Default},
+                        Path=startAutoScriptOnAppStart}" />
+
+                    <CheckBox Grid.Column="0" Grid.Row="3"
+                              Content="Start Stats window"
+                              IsChecked="{Binding Source={x:Static properties:Settings.Default},
+                        Path=openStatsOnAppStart}" />
+                </Grid>
             </Grid>
         </Grid>
     </Grid>
