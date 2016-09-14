@@ -107,6 +107,7 @@
                 <Label Grid.Row="0" Grid.Column="0" Content="Start script" />
                 <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Source={x:Static properties:Settings.Default},
                         Path=startScriptFilename}" Width="120" />
+                <Button Click="StartAutoFile_Click" Content="Choose File..." />
 
                 <Label Grid.Row="1" Grid.Column="0" Content="Stop script" />
                 <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Source={x:Static properties:Settings.Default},

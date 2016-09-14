@@ -31,5 +31,10 @@ namespace Fangame_Manager
             Properties.Settings.Default.Save();
             base.OnClosed(e);
         }
+
+        private void StartAutoFile_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
