@@ -15,76 +15,100 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Content="On App Start" />
-            <Grid Grid.Row="1" Grid.Column="0">
-                <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                    </Grid.ColumnDefinitions>
-                    <CheckBox Grid.Column="0" Grid.Row="0"
+            
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="On App Start" />
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Grid.Column="0" Grid.Row="0"
                               Content="Extract Archives"
                               IsChecked="{Binding Source={x:Static properties:Settings.Default},
                         Path=extractArchivesOnStartup}" />
 
-                    <CheckBox Grid.Column="0" Grid.Row="1"
+                        <CheckBox Grid.Column="0" Grid.Row="1"
                               Content="Delete Archive after extract"
                               IsChecked="{Binding Source={x:Static properties:Settings.Default},
                         Path=deleteArchivesOnExtract}" />
 
-                    <CheckBox Grid.Column="0" Grid.Row="2"
+                        <CheckBox Grid.Column="0" Grid.Row="2"
                               Content="Start autohotkey"
                               IsChecked="{Binding Source={x:Static properties:Settings.Default},
                         Path=startAutoScriptOnAppStart}" />
 
-                    <CheckBox Grid.Column="0" Grid.Row="3"
+                        <CheckBox Grid.Column="0" Grid.Row="3"
                               Content="Start Stats window"
                               IsChecked="{Binding Source={x:Static properties:Settings.Default},
                         Path=openStatsOnAppStart}" />
+                    </Grid>
+                </Grid>
+
+                <Label Grid.Row="0" Grid.Column="1" Content="On Game Start" />
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Grid.Column="0" Grid.Row="0"
+                              Content="Open stats"
+                              IsChecked="{Binding Source={x:Static properties:Settings.Default},
+                        Path=openStatsOnGameStart}" />
+
+                        <CheckBox Grid.Column="0" Grid.Row="1"
+                              Content="Start Autohotkey script"
+                              IsChecked="{Binding Source={x:Static properties:Settings.Default},
+                        Path=startAutoScriptOnGameStart}" />
+
+                        <CheckBox Grid.Column="0" Grid.Row="2"
+                              Content="Hide stats on exit"
+                              IsChecked="{Binding Source={x:Static properties:Settings.Default},
+                        Path=hideStatsOnGameExit}" />
+                    </Grid>
                 </Grid>
             </Grid>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Start script" />
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Source={x:Static properties:Settings.Default},
+                        Path=startScriptFilename}" />
 
-            <Label Grid.Row="0" Grid.Column="1" Content="On Game Start" />
-            <Grid Grid.Row="1" Grid.Column="1">
-                <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                    </Grid.ColumnDefinitions>
-                    <CheckBox Grid.Column="0" Grid.Row="0"
-                              Content="Extract Archives"
-                              IsChecked="{Binding Source={x:Static properties:Settings.Default},
-                        Path=extractArchivesOnStartup}" />
-
-                    <CheckBox Grid.Column="0" Grid.Row="1"
-                              Content="Delete Archive after extract"
-                              IsChecked="{Binding Source={x:Static properties:Settings.Default},
-                        Path=deleteArchivesOnExtract}" />
-
-                    <CheckBox Grid.Column="0" Grid.Row="2"
-                              Content="Start autohotkey"
-                              IsChecked="{Binding Source={x:Static properties:Settings.Default},
-                        Path=startAutoScriptOnAppStart}" />
-
-                    <CheckBox Grid.Column="0" Grid.Row="3"
-                              Content="Start Stats window"
-                              IsChecked="{Binding Source={x:Static properties:Settings.Default},
-                        Path=openStatsOnAppStart}" />
-                </Grid>
+                <Label Grid.Row="1" Grid.Column="0" Content="Stop script" />
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Source={x:Static properties:Settings.Default},
+                        Path=stopScriptFilename}" />
             </Grid>
         </Grid>
     </Grid>
