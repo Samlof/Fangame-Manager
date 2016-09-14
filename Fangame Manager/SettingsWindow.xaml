@@ -17,6 +17,7 @@
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
             
+            <!--App and Game start options-->
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
@@ -92,6 +93,7 @@
                     </Grid>
                 </Grid>
             </Grid>
+            <!--Autohotkey stuff-->
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
@@ -104,11 +106,11 @@
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" Content="Start script" />
                 <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Source={x:Static properties:Settings.Default},
-                        Path=startScriptFilename}" />
+                        Path=startScriptFilename}" Width="120" />
 
                 <Label Grid.Row="1" Grid.Column="0" Content="Stop script" />
                 <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Source={x:Static properties:Settings.Default},
-                        Path=stopScriptFilename}" />
+                        Path=stopScriptFilename}" Width="120" />
             </Grid>
         </Grid>
     </Grid>
