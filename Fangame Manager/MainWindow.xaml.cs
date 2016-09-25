@@ -19,7 +19,7 @@ namespace Fangame_Manager
         {
             InitializeComponent();
             gameManager = new GameManager();
-            IOManager.UnpackNewgames();
+            IOHelper.UnpackNewgames();
             gameManager.checkDirectoryForGames(Directory.GetCurrentDirectory());
 
             gameManager.finishGameLists();

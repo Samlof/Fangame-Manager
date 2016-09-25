@@ -113,7 +113,7 @@
     <Compile Include="GoogleSheetsInserter.cs" />
     <Compile Include="HelperFunctions.cs" />
     <Compile Include="InputManager.cs" />
-    <Compile Include="IOManager.cs" />
+    <Compile Include="IOHelper.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>

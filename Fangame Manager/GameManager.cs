@@ -74,7 +74,7 @@ namespace Fangame_Manager
                     MessageBoxResult result = MessageBox.Show($"Directory \"{dirName}\" exists already in the {Properties.Settings.Default.foldernameForCompleted} folder. Replace?", "Directory Conflict", MessageBoxButton.OKCancel);
                     if (result == MessageBoxResult.Cancel) return;
                 }
-                IOManager.MoveDirectory(dir, destDir);
+                IOHelper.MoveDirectory(dir, destDir);
                 deleteFromSettings(gamename);
             }
         }
@@ -117,7 +117,7 @@ namespace Fangame_Manager
 
         private void AddToGoogleSheet(string gamename, bool askRating = true)
         {
-            int[] timeAndDeath = IOManager.GetGameTimeAndDeath(Path.GetDirectoryName(gamenameToFilename[gamename]));
+            int[] timeAndDeath = IOHelper.GetGameTimeAndDeath(Path.GetDirectoryName(gamenameToFilename[gamename]));
             if (timeAndDeath == null) return;
 
             // Time parameter
@@ -134,7 +134,7 @@ namespace Fangame_Manager
             int startRow = (int)Properties.Settings.Default.startRowForSheet;
             int startColumn = (int)Properties.Settings.Default.startColumnForSheet;
 
-            string dateC = IOManager.getDateCompleted(gamenameToFilename[gamename]);
+            string dateC = IOHelper.getDateCompleted(gamenameToFilename[gamename]);
 
 
 

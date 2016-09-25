@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Fangame_Manager
 {
-    class IOManager
+    class IOHelper
     {
         // First value is time, second deaths
         public static int[] GetGameTimeAndDeath(string filePath)
@@ -214,7 +214,7 @@ namespace Fangame_Manager
                     if (Properties.Settings.Default.deleteArchivesOnExtract)
                         File.Delete(file);
                     else
-                        IOManager.MoveArchiveAway(file);
+                        IOHelper.MoveArchiveAway(file);
                 }
             }
         }
@@ -249,7 +249,7 @@ namespace Fangame_Manager
                     string newdirname = Path.GetFileName(dir);
                     if (oldparent == newdirname)
                     {
-                        IOManager.MoveDirectory(dir, destinationFolder);
+                        IOHelper.MoveDirectory(dir, destinationFolder);
                         return true;
                     }
 
