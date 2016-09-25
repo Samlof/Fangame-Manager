@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 
@@ -39,6 +40,10 @@ namespace Fangame_Manager
             catch (System.ComponentModel.Win32Exception)
             {
                 MessageBox.Show("Script file: " + filePath + " can't be handled! Maybe .ahk is not associated with autohotkey?", "File Error!");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error happened while starting: " + filePath + " with error: " + e.Message);
             }
         }
     }
