@@ -17,7 +17,8 @@
                 <MenuItem Header="Quit"  Click="Quit_Clicked"/>
             </MenuItem>
         </Menu>
-        <Grid VerticalAlignment="Bottom" Margin="4, 4, 4, 4" Width="auto">
+        <!-- Listboxes -->
+        <Grid VerticalAlignment="Bottom" Margin="4, 4, 4, 30" Width="auto">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -55,6 +56,21 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
-
+        <!-- Buttons -->
+        <Grid VerticalAlignment="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Margin="5" Content="Complete" Click="CompleteButton_Clicked" />
+            <Button Grid.Column="1" Margin="5" Content="Hide" Click="HideButton_Clicked" />
+            <Button Grid.Column="2" Margin="5" Content="Delete" Click="DeleteButton_Clicked" />
+            <Button Grid.Column="3" Margin="5" Content="Open Stats" Click="OpenStatsButton_Clicked" />
+        </Grid>
     </Grid>
 </Window>

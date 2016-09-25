@@ -46,11 +46,23 @@ namespace Fangame_Manager
                 
 
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void CompleteButton_Clicked(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(getSelectedGame());
+            gameManager.CompleteGame(getSelectedGame());
         }
 
+        private void HideButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            gameManager.HideGame(getSelectedGame());
+        }
+        private void DeleteButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            gameManager.DeleteGame(getSelectedGame());
+        }
+        private void OpenStatsButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            // TODO:
+        }
         #region Listbox functions
         private void lb_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
