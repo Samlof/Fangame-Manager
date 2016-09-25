@@ -6,7 +6,7 @@ namespace Fangame_Manager
     {
         private static string timeIntoStringPart(int time)
         {
-            return time < 10 ? "0" + time.ToString() : time.ToString();
+            return (time < 10 ? "0"  : "") + time.ToString();
         }
         public static string timeIntoString(int timeInSeconds)
         {
@@ -34,8 +34,8 @@ namespace Fangame_Manager
             string filename = filenames[0];
             string exeName = Path.GetFileNameWithoutExtension(filename);
             string gamename = Path.GetFileName(dirPath);
-            if (exeName.Length > gamename.Length) gamename = exeName;
-            return gamename;
+
+            return exeName.Length > gamename.Length ? exeName : gamename;
         }
     }
 }

@@ -16,7 +16,6 @@
                 <MenuItem Header="_Options"  Click="Show_Options_Clicked"/>
                 <MenuItem Header="Quit"  Click="Quit_Clicked"/>
             </MenuItem>
-            <Button x:Name="button" Content="Button" Width="75" Click="button_Click" />
         </Menu>
         <Grid VerticalAlignment="Bottom" Margin="4, 4, 4, 4" Width="auto">
             <Grid.RowDefinitions>
@@ -30,7 +29,7 @@
             </Grid.ColumnDefinitions>
             
             <Label Grid.Row="0" Grid.Column="0" Content="Old Games:"/>
-            <ListBox Name="lbOldGames" Grid.Row="1" Grid.Column="0" PreviewMouseDown="lbOldGames_PreviewMouseDown">
+            <ListBox Name="lbOldGames" Grid.Row="1" Grid.Column="0" PreviewMouseDown="lbOldGames_PreviewMouseDown" MinHeight="100">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding}" />
