@@ -43,7 +43,7 @@ namespace Fangame_Manager
             }
             catch (Exception e)
             {
-                MessageBox.Show("Error happened while starting: " + filePath + " with error: " + e.Message);
+                MessageBox.Show("Error happened while starting: " + filePath + " with error: " + e.Message, "Error!");
             }
         }
     }
