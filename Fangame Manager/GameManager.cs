@@ -26,7 +26,7 @@ namespace Fangame_Manager
         public List<string> RecentGames { get { return settings.recentGames; } }
         public List<string> NewGames { get { return settings.newGames; } }
         private List<string> _games;
-        public List<string> Games { get { return settings.gameNames; } protected set { settings.gameNames = value; } }
+        public List<string> Games { get { return _games; } protected set { _games = value; } }
 
         public static GameManager Instance { get; set; }
         public GameManager()

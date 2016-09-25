@@ -6,17 +6,20 @@
         xmlns:local="clr-namespace:Fangame_Manager"
         xmlns:properties="clr-namespace:Fangame_Manager.Properties"
         mc:Ignorable="d"
-        Title="SettingsWindow" Height="300" Width="300">
+        Title="SettingsWindow" Height="412.386" Width="315.341">
     <Grid>
         <Grid VerticalAlignment="Top" HorizontalAlignment="Left">
             <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
-            
+
             <!--App and Game start options-->
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -93,9 +96,27 @@
                     </Grid>
                 </Grid>
             </Grid>
-            <!--Autohotkey stuff-->
+
+            <!--Extract Program-->
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Extract Program:" />
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Source={x:Static properties:Settings.Default},
+                        Path=extractProgramFilename}" Width="120" />
+                <Button Grid.Row="0" Grid.Column="2" Click="ExtractProgram_Click" Content="Browse..." />
+            </Grid>
+
+            <!--Autohotkey stuff-->
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
@@ -104,14 +125,84 @@
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Content="Start script" />
-                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Source={x:Static properties:Settings.Default},
-                        Path=startScriptFilename}" Width="120" />
-                <Button Click="StartAutoFile_Click" Content="Choose File..." />
+                <Button Grid.Row="0" Grid.Column="1" Click="StartScript_Click" Content="Start Script" />
+                <Button Grid.Row="0" Grid.Column="2" Click="StopScript_Click" Content="Stop Script" />
 
-                <Label Grid.Row="1" Grid.Column="0" Content="Stop script" />
+                <Label Grid.Row="1" Grid.Column="0" Content="Start script:" />
                 <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Source={x:Static properties:Settings.Default},
+                        Path=startScriptFilename}" Width="120" />
+                <Button Grid.Row="1" Grid.Column="2" Click="StartAutoFile_Click" Content="Browse..." />
+
+                <Label Grid.Row="2" Grid.Column="0" Content="Stop script:" />
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Source={x:Static properties:Settings.Default},
                         Path=stopScriptFilename}" Width="120" />
+                <Button Grid.Row="2" Grid.Column="2" Click="StopAutoFile_Click" Content="Browse..." />
+
+            </Grid>
+
+            <!--Completed and archive stuff-->
+            <Grid Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <CheckBox Grid.Row="0" Grid.ColumnSpan="2"
+                              Content="Move completed games away"
+                              IsChecked="{Binding Source={x:Static properties:Settings.Default},
+                        Path=moveCompletedGamesAway}" />
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Completed games:" />
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Source={x:Static properties:Settings.Default},
+                        Path=foldernameForCompleted}" Width="120" />
+
+                <Label Grid.Row="2" Grid.Column="0" Content="Archives:" />
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Source={x:Static properties:Settings.Default},
+                        Path=foldernameForArchives}" Width="120" />
+
+            </Grid>
+
+            <!--Completed and archive stuff-->
+            <Grid Grid.Row="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <CheckBox Grid.Row="0" Grid.ColumnSpan="2"
+                              Content="Add completed game to Google Spreadsheet"
+                              IsChecked="{Binding Source={x:Static properties:Settings.Default},
+                        Path=driveSheetInsertOn}" />
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Spreadsheet name:" />
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Source={x:Static properties:Settings.Default},
+                        Path=spreadSheetnameForGoogle}" Width="120" />
+
+                <Label Grid.Row="2" Grid.Column="0" Content="Start Row:" />
+                <TextBox Grid.Row="2" Grid.Column="1" Height="32" Width="20" HorizontalAlignment="Left" Text="{Binding Source={x:Static properties:Settings.Default},
+                        Path=startRowForSheet}"  TextAlignment="Right" IsReadOnly="True" />
+                <ScrollBar Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Margin="20,0,0,0" Height="32" SmallChange="1" Value="{Binding Source={x:Static properties:Settings.Default},
+                        Path=startRowForSheet}" Maximum="9"/>
+
+                <Label Grid.Row="3" Grid.Column="0" Content="Start Column:" />
+                <TextBox Grid.Row="3" Grid.Column="1" Height="32" Width="20" HorizontalAlignment="Left" Text="{Binding Source={x:Static properties:Settings.Default},
+                        Path=startColumnForSheet}"  TextAlignment="Right" IsReadOnly="True" />
+                <ScrollBar Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="20,0,0,0" Height="32" SmallChange="1" Value="{Binding Source={x:Static properties:Settings.Default},
+                        Path=startColumnForSheet}" Maximum="9"/>
+
+                <Button Grid.Row="4" Content="Add Current Completed to Sheet" Click="AddCurrentCompletedToSheetButton_Click" />
             </Grid>
         </Grid>
     </Grid>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -34,7 +35,45 @@ namespace Fangame_Manager
 
         private void StartAutoFile_Click(object sender, RoutedEventArgs e)
         {
-            
+            OpenFileDialog openFileDial = new OpenFileDialog();
+            if(openFileDial.ShowDialog() == true)
+            {
+                Properties.Settings.Default.startScriptFilename = openFileDial.FileName;
+            }
+        }
+
+        private void StopAutoFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDial = new OpenFileDialog();
+            if (openFileDial.ShowDialog() == true)
+            {
+                Properties.Settings.Default.stopScriptFilename = openFileDial.FileName;
+            }
+
+        }
+
+        private void ExtractProgram_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDial = new OpenFileDialog();
+            if (openFileDial.ShowDialog() == true)
+            {
+                Properties.Settings.Default.extractProgramFilename = openFileDial.FileName;
+            }
+        }
+
+        private void StartScript_Click(object sender, RoutedEventArgs e)
+        {
+            AutohotkeyScriptManager.Start();
+        }
+
+        private void StopScript_Click(object sender, RoutedEventArgs e)
+        {
+            AutohotkeyScriptManager.Stop();
+        }
+
+        private void AddCurrentCompletedToSheetButton_Click(object sender, RoutedEventArgs e)
+        {
+            GameManager.Instance.addCurrentCompletedToSheet();
         }
     }
 }
