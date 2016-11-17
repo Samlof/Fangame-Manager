@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fangame_Manager"
         mc:Ignorable="d"
-        Title="Stats" Height="79.262" Width="86.931" ResizeMode="NoResize" x:Name="_this">
+        Title="Stats" Height="92.898" Width="105.681" ResizeMode="NoResize" x:Name="_this">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -13,12 +13,12 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" MinWidth="40"/>
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" DataContext="{Binding ElementName=_this}" Content="{Binding Path=frames}" Name="framesLabel" FontSize="24" />
-            <Label Grid.Row="0" Grid.Column="1" DataContext="{Binding ElementName=_this}" Content="{Binding Path=jumpMs}"  Name="msLabel"/>
-            <Label Grid.Row="1" Grid.Column="1" DataContext="{Binding ElementName=_this}" Content="{Binding Path=shootAmnt}"  Name="zLabel"/>
+            <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Content="0" Name="framesLabel" FontSize="24" />
+            <Label Grid.Row="0" Grid.Column="1" Content="0"  Name="msLabel"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="0"  Name="zLabel"/>
         </Grid>
     </Grid>
 </Window>

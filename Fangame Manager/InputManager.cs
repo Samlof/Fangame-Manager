@@ -98,7 +98,7 @@ namespace Fangame_Manager
                             int totalTime = Instance.lastZinMillis - Instance.zTimes.Peek();
                             int zTotalTimes = Instance.zTimes.Count;
                             float average = (float)zTotalTimes * 1000 / (float)totalTime;
-                            Instance.shootAmout = average.ToString("0.0");
+                            StatsWindow.Instance.updateZnumbers(average);
                             Instance.zReleased = false;
                         }
                     }
@@ -115,7 +115,7 @@ namespace Fangame_Manager
                     {
                         // Update frames
                         Instance.shiftSw.Stop();
-                        Instance.updateJumpStrings((int)Instance.shiftSw.ElapsedMilliseconds);
+                        StatsWindow.Instance.updateJumpNumbers((int)Instance.shiftSw.ElapsedMilliseconds);
 
                         Instance.processingShift = false;
                         Instance.keyToCheck = key;
@@ -148,24 +148,6 @@ namespace Fangame_Manager
         bool oReleased = true;
         bool processingShift = false;
         Key keyToCheck;
-
-        // Accessors for window
-
-        void updateJumpStrings(int millis)
-        {
-            jumpMillis = millis.ToString() + "ms";
-            int frames = (millis + 3) / 20;
-            frames++;
-            jumpFrames = frames.ToString();
-
-            StatsWindow.Instance.frames = jumpFrames;
-            System.Console.WriteLine(StatsWindow.Instance.frames);
-        }
-
-        public string jumpMillis { get; set; } = "0";
-        public string jumpFrames { get; set; } = "0";
-        public string shootAmout { get; protected set; } = "0";
-
 
         public static InputManager Instance { get; set; }
         public InputManager()

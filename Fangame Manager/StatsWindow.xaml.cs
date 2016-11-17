@@ -29,9 +29,17 @@ namespace Fangame_Manager
             _instance = this;
         }
 
-
-        public string frames { get; set; } = "0";
-        public string jumpMs { get { return inputManager.jumpMillis.ToString() + "ms"; } }
-        public string shootAmnt { get { return inputManager.shootAmout + "z"; } }
+        public void updateJumpNumbers(int millis)
+        {
+            msLabel.Content = $"ms: {millis}";
+            int frames = (millis + 3) / 20;
+            frames++;
+            framesLabel.Content = frames.ToString();
+        }
+        public void updateZnumbers(float number)
+        {
+            string num = number.ToString("0.0");
+            zLabel.Content = $"z: {num}";
+        }
     }
 }
