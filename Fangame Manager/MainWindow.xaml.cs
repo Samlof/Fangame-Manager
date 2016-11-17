@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System;
 using System.Windows.Input;
+using System.Threading;
+using System.Windows.Threading;
 
 namespace Fangame_Manager
 {
@@ -18,6 +20,7 @@ namespace Fangame_Manager
         public MainWindow()
         {
             InitializeComponent();
+
             gameManager = new GameManager();
             IOHelper.UnpackNewgames();
             gameManager.checkDirectoryForGames(Directory.GetCurrentDirectory());
@@ -61,7 +64,12 @@ namespace Fangame_Manager
         }
         private void OpenStatsButton_Clicked(object sender, RoutedEventArgs e)
         {
-            // TODO:
+            startStatsThread();
+        }
+        
+        void startStatsThread()
+        {
+            Dispatcher.CurrentDispatcher.Invoke(delegate { new StatsWindow().Show(); }, DispatcherPriority.Normal);
         }
         #region Listbox functions
         private void lb_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)

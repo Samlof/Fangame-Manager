@@ -20,7 +20,7 @@ namespace Fangame_Manager
         private static extern bool UnhookWindowsHookEx(IntPtr hhk);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern IntPtr CallNextHookEx(int nCode,
+        private static extern IntPtr CallNextHookEx(IntPtr hook, int nCode,
             IntPtr wParam, IntPtr lParam);
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
@@ -80,12 +80,10 @@ namespace Fangame_Manager
                         if ((Instance.lastZinMillis + 3000 < Instance.zSw.ElapsedMilliseconds) || !Instance.zSw.IsRunning)
                         {
                             Instance.zSw.Restart();
-                            Instance.zCount = 0;
                             Instance.zTimes.Clear();
                         }
 
                         // Update timer and count
-                        Instance.zCount++;
                         Instance.zTimes.Enqueue((int)Instance.zSw.ElapsedMilliseconds);
                         Instance.lastZinMillis = (int)Instance.zSw.ElapsedMilliseconds;
                         if (Instance.zTimes.Count > 1)
@@ -100,7 +98,7 @@ namespace Fangame_Manager
                             int totalTime = Instance.lastZinMillis - Instance.zTimes.Peek();
                             int zTotalTimes = Instance.zTimes.Count;
                             float average = (float)zTotalTimes * 1000 / (float)totalTime;
-                            //Instance.UpdateStatuszAmount("z: " + average.ToString("0.0"));
+                            Instance.shootAmout = average.ToString("0.0");
                             Instance.zReleased = false;
                         }
                     }
@@ -117,10 +115,7 @@ namespace Fangame_Manager
                     {
                         // Update frames
                         Instance.shiftSw.Stop();
-                        int millis = (int)Instance.shiftSw.ElapsedMilliseconds;
-                        int frames = (millis + 3) / 20;
-                        frames++;
-                        //Instance.UpdateStatus(frames.ToString(), millis.ToString());
+                        Instance.updateJumpStrings((int)Instance.shiftSw.ElapsedMilliseconds);
 
                         Instance.processingShift = false;
                         Instance.keyToCheck = key;
@@ -138,7 +133,7 @@ namespace Fangame_Manager
                 }
             }
             // Pass back to windows
-            return CallNextHookEx(nCode, wParam, lParam);
+            return CallNextHookEx(_hookID, nCode, wParam, lParam);
         }
 
         bool autofire = false;
@@ -147,18 +142,35 @@ namespace Fangame_Manager
         Stopwatch autofireSw = new Stopwatch();
         Stopwatch shiftSw = new Stopwatch();
         Stopwatch zSw = new Stopwatch();
-        private Queue<int> zTimes = new Queue<int>();
+        Queue<int> zTimes = new Queue<int>();
         int lastZinMillis = 0;
-        int zCount = 0;
         bool zReleased = true;
         bool oReleased = true;
         bool processingShift = false;
         Key keyToCheck;
 
+        // Accessors for window
+
+        void updateJumpStrings(int millis)
+        {
+            jumpMillis = millis.ToString() + "ms";
+            int frames = (millis + 3) / 20;
+            frames++;
+            jumpFrames = frames.ToString();
+
+            StatsWindow.Instance.frames = jumpFrames;
+            System.Console.WriteLine(StatsWindow.Instance.frames);
+        }
+
+        public string jumpMillis { get; set; } = "0";
+        public string jumpFrames { get; set; } = "0";
+        public string shootAmout { get; protected set; } = "0";
+
+
         public static InputManager Instance { get; set; }
         public InputManager()
         {
-            if(Instance != null)
+            if (Instance != null)
             {
                 System.Console.WriteLine("No multiple inputmanagers!");
                 return;
